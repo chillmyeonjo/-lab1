@@ -1,76 +1,52 @@
-from random import randrange
-from turtle import *
+def a():
+    a=input("введите пароль ")
+    b=input("введите пароль еще раз ")
+    if a==b:
+        print("пароль принят ")
+    else:
+        print("пароль не принят ")
 
-from freegames import vector
+a()
 
-ball = vector(-200, -200)
-speed = vector(0, 0)
-targets = []
+def b():
+    a=int(input("введите номер "))
+    if a==1:
+        print('нижнее боковое')
+    if a==2:
+        print('верхнее боковое')
+    if a==3:
+        print('нижнее в купе')
+    if a==4:
+        print('верхнее в купе')
+    if a==5:
+        print('нижнее в купе')
+    if a==6:
+        print('верхнее в купе')
 
+b()
 
-def tap(x, y):
-    """Respond to screen tap."""
-    if not inside(ball):
-        ball.x = -199
-        ball.y = -199
-        speed.x = (x + 200) / 25
-        speed.y = (y + 200) / 25
+def v():
+    a=int(input("Введите год "))
+    if a%4==0 and a%100!=0:
+        print("Год", a, "високосный")
+    else:
+        print("Год не високосный")
 
+v()
 
-def inside(xy):
-    """Return True if xy within screen."""
-    return -200 < xy.x < 200 and -200 < xy.y < 200
-
-
-def draw():
-    """Draw ball and targets."""
-    clear()
-
-    for target in targets:
-        goto(target.x, target.y)
-        dot(20, 'pink')
-
-    if inside(ball):
-        goto(ball.x, ball.y)
-        dot(6, 'green')
-
-    update()
-
-
-def move():
-    """Move ball and targets."""
-    if randrange(40) == 0:
-        y = randrange(-150, 150)
-        target = vector(200, y)
-        targets.append(target)
-
-    for target in targets:
-        target.x -= 0.5
-
-    if inside(ball):
-        speed.y -= 0.35
-        ball.move(speed)
-
-    dupe = targets.copy()
-    targets.clear()
-
-    for target in dupe:
-        if abs(target - ball) > 13:
-            targets.append(target)
-
-    draw()
-
-    for target in targets:
-        if not inside(target):
-            return
-
-    ontimer(move, 50)
-
-
-setup(420, 420, 370, 0)
-hideturtle()
-up()
-tracer(False)
-onscreenclick(tap)
-move()
-done()
+def g():
+    a = str(input("введите цвет "))
+    b = str(input("введите второй цвет "))
+    while (a!= 'красный' or a!= 'синий' or a!= 'желтый') and (b!= 'красный' or b!= 'синий' or b!= 'желтый'):
+        print("Ошибка")
+        a = str(input("введите цвет"))
+        b = str(input("введите второй цвет"))
+        if (a== 'красный' or a== 'синий' or a== 'желтый') and (b== 'красный' or b== 'синий' or b== 'желтый'):
+            break
+    if (a=='красный' and b=='синий') or (b=='красный' and a=='синий'):
+        print('фиолетовый')
+    if (a=='красный' and b=='желтый') or (b=='красный' and a=='желтый'):
+        print('оранжевый')
+    if (a=='желтый' and b=='синий') or (b=='желтый' and a=='синий'):
+        print('зеленый')
+g()
